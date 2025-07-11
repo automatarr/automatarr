@@ -12,7 +12,7 @@ Automatarr is a fork of [Devine](https://github.com/devine-dl/devine/), a powerf
 
 - 🚀 **Easy Installation** - Simple pip installation
 - 🎥 **Multi-Media Support** - Movies, TV episodes, and music
-- 🛠️ **Built-in Parsers** - DASH and HLS manifest support
+- 🛠️ **Built-in Parsers** - DASH/HLS and ISM manifest support
 - 🔒 **DRM Support** - Widevine and PlayReady integration
 - 💾 **Flexible Storage** - Local and remote key vaults
 - 👥 **Multi-Profile Auth** - Support for cookies and credentials
