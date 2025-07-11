@@ -1,0 +1,98 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "automatarr"
+version = "1.0.0"
+description = "Modular Movie, TV, and Music Archival Software."
+license = "GPL-3.0-only"
+authors = ["automatarr team"]
+readme = "README.md"
+homepage = "https://github.com/automatarr/automatarr"
+repository = "https://github.com/automatarr/automatarr"
+keywords = ["python", "downloader", "drm", "widevine"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Security :: Cryptography",
+]
+include = [
+  { path = "CHANGELOG.md", format = "sdist" },
+  { path = "README.md", format = "sdist" },
+  { path = "LICENSE", format = "sdist" },
+]
+
+[tool.poetry.urls]
+"Issues" = "https://github.com/automatarr/automatarr/issues"
+"Discussions" = "https://github.com/automatarr/automatarr/discussions"
+"Changelog" = "https://github.com/automatarr/automatarr/blob/master/CHANGELOG.md"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4.0"
+appdirs = "^1.4.4"
+Brotli = "^1.1.0"
+click = "^8.1.7"
+construct = "^2.8.8"
+crccheck = "^1.3.0"
+jsonpickle = "^3.0.4"
+langcodes = { extras = ["data"], version = "^3.4.0" }
+lxml = "^5.2.1"
+pproxy = "^2.7.9"
+protobuf = "^4.25.3"
+pycaption = "^2.2.6"
+pycryptodomex = "^3.20.0"
+pyjwt = "^2.8.0"
+pymediainfo = "^6.1.0"
+pymp4 = "^1.4.0"
+pymysql = "^1.1.0"
+pywidevine = { extras = ["serve"], version = "^1.8.0" }
+PyYAML = "^6.0.1"
+requests = { extras = ["socks"], version = "^2.31.0" }
+rich = "^13.7.1"
+"rlaphoenix.m3u8" = "^3.4.0"
+"ruamel.yaml" = "^0.18.6"
+sortedcontainers = "^2.4.0"
+subtitle-filter = "^1.4.9"
+Unidecode = "^1.3.8"
+urllib3 = "^2.2.1"
+chardet = "^5.2.0"
+curl-cffi = "^0.7.0b4"
+pyplayready = "^0.6.0"
+httpx = "^0.28.1"
+cryptography = "^43.0.3"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.7.0"
+mypy = "^1.9.0"
+mypy-protobuf = "^3.6.0"
+types-protobuf = "^4.24.0.20240408"
+types-PyMySQL = "^1.1.0.1"
+types-requests = "^2.31.0.20240406"
+isort = "^5.13.2"
+ruff = "~0.3.7"
+
+[tool.poetry.scripts]
+automatarr = "automatarr.core.__main__:main"
+
+[tool.ruff]
+force-exclude = true
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "W"]
+
+[tool.isort]
+line_length = 118
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_defs = true
+follow_imports = "silent"
+ignore_missing_imports = true
+no_implicit_optional = true
