@@ -438,7 +438,7 @@ descending order regardless of how the user specified them.
 
 ### Fixed
 
-- Prevented some duplicate WiAutomatarr tree logs under specific edge-cases.
+- Prevented some duplicate Widevine tree logs under specific edge-cases.
 - The Subtitle parse method no longer absorbs the syntax error message.
 - Replaced all negative size values with 0 on TTML subtitles as a negative value would cause syntax errors.
 - Fixed crash during decryption when shaka-packager skips decryption of a segment as it had no actual data and
@@ -462,7 +462,7 @@ descending order regardless of how the user specified them.
   server supports Byte-range, or it will otherwise stream the response. It also tries to get the file size length and
   uses that instead of `maximum_size` unless it's bigger than `maximum_size`.
 - Added new `get_key_id` method to Track to probe the track for a track-specific Encryption Key ID. This is similar to
-  WiAutomatarr's `from_track` method but ignores all `pssh` boxes and manifest information as the information within those
+  Widevine's `from_track` method but ignores all `pssh` boxes and manifest information as the information within those
   could be for a wider range of tracks or not for that track at all.
 - Added a 5-attempt retry system to DASH and HLS downloads. URL downloads only uses aria2(c)'s built in retry system
   which has the same amount of tries and same delay between attempts. Any errors emitted when downloading segments will
@@ -475,7 +475,7 @@ descending order regardless of how the user specified them.
 
 ### Changed
 
-- The `*` symbol is no longer spaced after the WiAutomatarr `KID:KEY` when denoting that it is for this specific PSSH.
+- The `*` symbol is no longer spaced after the Widevine `KID:KEY` when denoting that it is for this specific PSSH.
   This reduces wasted vertical space.
 - The "aria2 will resume download if the transfer is restarted" logs that occur when aria2(c) handles the CTRL+C break,
   and "If there are any errors, then see the log file" logs are now ignored and no longer logged to the console.
@@ -522,7 +522,7 @@ descending order regardless of how the user specified them.
 
 - Re-added logging support for shaka-packager on errors and warnings. Do note that INFO logs and the 'Insufficient bits
   in bitstream for given AVC profile' warning logs are ignored and never printed.
-- Added new exceptions to the WiAutomatarr DRM class, `CEKNotFound` and `EmptyLicense`.
+- Added new exceptions to the Widevine DRM class, `CEKNotFound` and `EmptyLicense`.
 - Added support for Byte-ranges on HLS init maps.
 
 ### Changed
@@ -531,7 +531,7 @@ descending order regardless of how the user specified them.
 - Subprocess exceptions from a download worker no longer prints a traceback. It now only logs the return code. This is
   because all subprocess errors during a download is now logged, therefore the full traceback is no longer necessary.
 - Aria2(c) no longer pre-allocates file space if segmented. This is to reduce generally unnecessary upfront I/O usage.
-- The WiAutomatarr DRM class's `get_content_keys` method now raises the new `CEKNotFound` and `EmptyLicense` exceptions not
+- The Widevine DRM class's `get_content_keys` method now raises the new `CEKNotFound` and `EmptyLicense` exceptions not
   `ValueError` exceptions.
 - The prepare_drm code now raises exceptions where needed instead of `sys.exit(1)`. Callees do not need to make any
   changes. The exception should continue to go up the call stack and get handled by the `dl` command.
@@ -572,7 +572,7 @@ This release brings a huge change to the fundamentals of Automatarr's logging, U
   message if downloading was stopped, or a download error message if downloading failed. It will print the first
   download error traceback with rich before stopping.
 - Downloads will now automatically cancel if any track or segment download fails.
-- Implement sub-commands `add` and `delete` to the `wvd` command for adding and deleting WVD (WiAutomatarr Device) files to
+- Implement sub-commands `add` and `delete` to the `wvd` command for adding and deleting WVD (Widevine Device) files to
   and from the configured WVDs directory (#31).
 - Add new config option to disable the forced background color. You may want to disable the purple background if you're
   terminal isn't able to apply it correctly, or you prefer to use your own terminal's background color.
@@ -616,7 +616,7 @@ This release brings a huge change to the fundamentals of Automatarr's logging, U
 - The `Series`, `Movies`, and `Album` classes now have a much more simplified string representation. They now simply
   state the overarching content within them. E.g., Series says the title and year of the TV Show.
 - The final log when all titles are processed is now a rich log and states how long the entire process took.
-- WiAutomatarr DRM license information is now printed below the tracks as a rich tree.
+- Widevine DRM license information is now printed below the tracks as a rich tree.
 - The CCExtractor process, Subtitle Conversion process, and FFmpeg Repacking process were all moved out of the track
   download function (and therefore the thread) to be done on the main thread after downloading. This improves download
   speed as the threads can close and be freed quicker for the next track to begin.
@@ -631,7 +631,7 @@ This release brings a huge change to the fundamentals of Automatarr's logging, U
   the progress.
 - Now running aria2(c) with normal subprocess instead of through asyncio. This removes the creation of yet another
   thread which is unnecessary as these calls would have already been under a non-main thread.
-- Moved WiAutomatarr DRM licensing calls before the download process for normal URL track downloads.
+- Moved Widevine DRM licensing calls before the download process for normal URL track downloads.
 - Segment Merging code for DASH and HLS downloads have been moved from the `dl` class to the HLS and DASH class.
 
 ### Removed
@@ -691,8 +691,8 @@ This release brings a huge change to the fundamentals of Automatarr's logging, U
 
 - Fixed a regression where the `track.path` was only updated for `Descriptor.URL` downloads if it had DRM. This caused
   downloads of subtitles or DRM-free tracks using the `URL` descriptor to be broken (#33).
-- Fixed a regression where `title` and `track` were not passed to the Service's functions for getting WiAutomatarr Service
-  Certificates and WiAutomatarr Licenses.
+- Fixed a regression where `title` and `track` were not passed to the Service's functions for getting Widevine Service
+  Certificates and Widevine Licenses.
 - Corrected the Cookie Path that was logged when adding cookies with `Automatarr auth add`.
 - The Config data is now defaulted to an empty dictionary when completely empty or non-existent. This fixes a crash if
   you try to use `Automatarr auth add` without a config file.
@@ -711,7 +711,7 @@ This release brings a huge change to the fundamentals of Automatarr's logging, U
 - Segmented HLS and DASH downloads now provide useful progress information using TQDM. Previously, aria2c would print
   progress information, but it was not very useful for segmented downloads due to how the information was presented.
 - Segmented HLS and DASH downloads are now manually multi-threaded in a similar way to aria2c's `--j=16`.
-- A class-function was added to the WiAutomatarr DRM class to obtain PSSH and KID information from init data by looking for
+- A class-function was added to the Widevine DRM class to obtain PSSH and KID information from init data by looking for
   PSSH and TENC boxes. This is an alternative to the from_track class-function when you only have the init data and not
   a track object.
 - Aria2c now has the ability to silence progress output and provide extra arguments.
@@ -728,7 +728,7 @@ This release brings a huge change to the fundamentals of Automatarr's logging, U
   be a mistake in the manifest.
 - HLS now uses the proxy when loading AES-128 DRM as ClearKey objects, which is required for some services. It will
   only be used if `Track.needs_proxy` is True.
-- The WiAutomatarr and ClearKey DRM classes decrypt functions no longer ask for a track. Instead, they ask for an input
+- The Widevine and ClearKey DRM classes decrypt functions no longer ask for a track. Instead, they ask for an input
   file path to which it will decrypt. It will automatically delete the input file and put the decrypted data in its
   place.
 

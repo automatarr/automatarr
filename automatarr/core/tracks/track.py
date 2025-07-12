@@ -275,8 +275,8 @@ class Track:
                         # the service might not have explicitly defined the `drm` property
                         # try find widevine DRM information from the init data of URL
                         try:
-                            self.drm = [Wiautomatarr.from_track(self, session)]
-                        except Wiautomatarr.Exceptions.PSSHNotFound:
+                            self.drm = [Widevine.from_track(self, session)]
+                        except Widevine.Exceptions.PSSHNotFound:
                             # it might not have Widevine DRM, or might not have found the PSSH
                             log.warning("No Widevine PSSH was found for this track, is it DRM free?")
 

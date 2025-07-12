@@ -466,8 +466,8 @@ class DASH:
 
         if not track.drm and isinstance(track, (Video, Audio)):
             try:
-                track.drm = [Wiautomatarr.from_init_data(init_data)]
-            except Wiautomatarr.Exceptions.PSSHNotFound:
+                track.drm = [Widevine.from_init_data(init_data)]
+            except Widevine.Exceptions.PSSHNotFound:
                 # it might not have Widevine DRM, or might not have found the PSSH
                 log.warning("No Widevine PSSH was found for this track, is it DRM free?")
 
