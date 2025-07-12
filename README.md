@@ -17,6 +17,7 @@ Automatarr is a fork of [Devine](https://github.com/devine-dl/devine/), a powerf
 - 💾 **Flexible Storage** - Local and remote key vaults
 - 👥 **Multi-Profile Auth** - Support for cookies and credentials
 - 🤖 **Smart Naming** - Automatic P2P-style filename structure
+- 🎬 **TMDB Lookup** - Automatic or Manual lookup for TMDB for muxing
 - ⚙️ **Configurable** - YAML-based configuration
 - ❤️ **Open Source** - Fully open-source with community contributions welcome
 
@@ -54,15 +55,12 @@ For comprehensive setup guides, configuration options, and advanced usage:
 📖 **[Visit our WIKI](https://github.com/automatarr/automatarr/wiki)**
 
 The WIKI contains detailed information on:
+
 - Installation and dependencies
 - Service configuration
 - Authentication setup
 - DRM configuration
 - Advanced features and troubleshooting
-
-## Services
-
-Automatarr doesn't include any services by default. You must create your own services for the platforms you have legal access to. 
 
 > [!WARNING]
 > Only create or use services for platforms you have the legal right to access.
@@ -77,6 +75,8 @@ This software is licensed under the [GNU General Public License, Version 3.0](LI
 
 ## Services
 
+Automatarr doesn't include any services by default. You must create your own services for the platforms you have legal access to.
+
 Unlike similar project's such as [youtube-dl], automatarr does not currently come with any Services. You must develop your
 own Services and only use automatarr with Services you have the legal right to do so.
 
@@ -89,9 +89,6 @@ own Services and only use automatarr with Services you have the legal right to d
   [youtube-dl]: <https://github.com/ytdl-org/youtube-dl>
   [yt-dlp]: <https://github.com/yt-dlp/yt-dlp>
   [Unlicense license]: <https://choosealicense.com/licenses/unlicense>
-
-  [Service]: <automatarr/core/service.py>
-  [Service Tag]: <#service-tags>
 
 ### Service Tags
 
@@ -187,11 +184,11 @@ folder without a `.txt` or `default.txt`, but with another file, then no Cookies
 `-p/--profile` like shown. This allows you to opt in to authentication at whim.
 
 > [!TIP]
+>
 > - If your Service does not require Authentication, then do not define any Credential or Cookie for that Service.
 > - You can use both Cookies and Credentials at the same time, so long as your Service takes and uses both.
 > - If you are using profiles, then make sure you use the same name on the Credential name and Cookie file name when
 >   using `-p/--profile`.
-
 > [!WARNING]
 > Profile names are case-sensitive and unique per-service. They have no arbitrary character or length limit, but for
 > convenience sake we don't recommend using any special characters as your terminal may get confused.
