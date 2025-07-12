@@ -18,8 +18,8 @@ import requests
 from langcodes import Language, tag_is_valid
 from lxml.etree import Element, ElementTree
 from pyplayready.system.pssh import PSSH as PR_PSSH
-from pywiautomatarr.cdm import Cdm as WidevineCdm
-from pywiautomatarr.pssh import PSSH
+from pywidevine.cdm import Cdm as WidevineCdm
+from pywidevine.pssh import PSSH
 from requests import Session
 
 from automatarr.core.constants import DOWNLOAD_CANCELLED, DOWNLOAD_LICENCE_ONLY, AnyTrack

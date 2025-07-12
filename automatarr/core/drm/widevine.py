@@ -11,8 +11,8 @@ from uuid import UUID
 import m3u8
 from construct import Container
 from pymp4.parser import Box
-from pywiautomatarr.cdm import Cdm as WidevineCdm
-from pywiautomatarr.pssh import PSSH
+from pywidevine.cdm import Cdm as WidevineCdm
+from pywidevine.pssh import PSSH
 from requests import Session
 from rich.text import Text
 

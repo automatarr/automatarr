@@ -5,7 +5,7 @@ from uuid import UUID
 
 import requests
 from pywidevine import RemoteCdm, Key, PSSH, Device, DeviceTypes
-from pywiautomatarr.license_protocol_pb2 import SignedMessage, SignedDrmCertificate
+from pywidevine.license_protocol_pb2 import SignedMessage, SignedDrmCertificate
 
 
 # Copyright 2024 by DevYukine.

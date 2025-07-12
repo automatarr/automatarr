@@ -15,7 +15,7 @@ from zlib import crc32
 
 from langcodes import Language
 from pyplayready.cdm import Cdm as PlayReadyCdm
-from pywiautomatarr.cdm import Cdm as WidevineCdm
+from pywidevine.cdm import Cdm as WidevineCdm
 from requests import Session
 
 from automatarr.core import binaries
