@@ -432,3 +432,18 @@ For example, `tag: "J0HN"` will have `-J0HN` at the end of all download filename
 
 API key for The Movie Database (TMDB). This is used for tagging downloaded files with TMDB,
 IMDB and TVDB identifiers. Leave empty to disable automatic lookups.
+
+To obtain a TMDB API key:
+
+1. Create an account at https://www.themoviedb.org/
+2. Go to https://www.themoviedb.org/settings/api to register for API access
+3. Fill out the API application form with your project details
+4. Once approved, you'll receive your API key
+
+For example,
+
+```yaml
+tmdb_api_key: cf66bf1895dkca5361ada3bebb84eb9a
+```
+
+**Note**: Keep your API key secure and do not share it publicly. This key is used by the core/utils/tags.py module to fetch metadata from TMDB for proper file tagging.
