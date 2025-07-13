@@ -25,6 +25,7 @@ automatarr/certs/
 automatarr/WVDs/
 automatarr/PRDs/
 temp/
+services/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
