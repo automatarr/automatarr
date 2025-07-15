@@ -260,7 +260,7 @@ def tag_file(path: Path, title: Title, tmdb_id: Optional[int] | None = None) -> 
     tvdb_id = ids.get("tvdb_id")
     if tvdb_id:
         tvdb_prefix = "movies" if kind == "movie" else "series"
-        standard_tags["TVDB"] = f"https://thetvdb.com/{tvdb_prefix}/{tvdb_id}"
+        standard_tags["TVDB"] = f"https://thetvdb.com/dereferrer/{tvdb_prefix}/{tvdb_id}"
 
     merged_tags = {
         **custom_tags,
