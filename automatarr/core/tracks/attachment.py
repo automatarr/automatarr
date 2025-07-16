@@ -61,6 +61,7 @@ class Attachment:
                 session = session or requests.Session()
                 response = session.get(url, stream=True)
                 response.raise_for_status()
+                download_path.parent.mkdir(parents=True, exist_ok=True)
 
                 with open(download_path, "wb") as f:
                     for chunk in response.iter_content(chunk_size=8192):

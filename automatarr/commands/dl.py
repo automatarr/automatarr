@@ -27,9 +27,9 @@ from construct import ConstError
 from pymediainfo import MediaInfo
 from pyplayready.cdm import Cdm as PlayReadyCdm
 from pyplayready.device import Device as PlayReadyDevice
-from pywiautomatarr.cdm import Cdm as WidevineCdm
-from pywiautomatarr.device import Device
-from pywiautomatarr.remotecdm import RemoteCdm
+from pywidevine.cdm import Cdm as WidevineCdm
+from pywidevine.device import Device
+from pywidevine.remotecdm import RemoteCdm
 from rich.console import Group
 from rich.live import Live
 from rich.padding import Padding
@@ -364,6 +364,11 @@ class dl:
                 events.subscribe(events.Types.TRACK_DECRYPTED, service.on_track_decrypted)
                 events.subscribe(events.Types.TRACK_REPACKED, service.on_track_repacked)
                 events.subscribe(events.Types.TRACK_MULTIPLEX, service.on_track_multiplex)
+
+            if no_subs:
+                console.log("Skipped subtitles as --no-subs was used...")
+                s_lang = None
+                title.tracks.subtitles = []
 
             with console.status("Getting tracks...", spinner="dots"):
                 title.tracks.add(service.get_tracks(title), warn_only=True)
@@ -862,7 +867,7 @@ class dl:
                             cek_tree.add(f"[logging.level.error]{msg}")
                             if not pre_existing_tree:
                                 table.add_row(cek_tree)
-                            raise Wiautomatarr.Exceptions.CEKNotFound(msg)
+                            raise Widevine.Exceptions.CEKNotFound(msg)
 
                     if kid not in drm.content_keys and not vaults_only:
                         from_vaults = drm.content_keys.copy()
@@ -873,7 +878,7 @@ class dl:
                             else:
                                 drm.get_content_keys(cdm=self.cdm, licence=licence, certificate=certificate)
                         except Exception as e:
-                            if isinstance(e, (Wiautomatarr.Exceptions.EmptyLicense, Wiautomatarr.Exceptions.CEKNotFound)):
+                            if isinstance(e, (Widevine.Exceptions.EmptyLicense, Widevine.Exceptions.CEKNotFound)):
                                 msg = str(e)
                             else:
                                 msg = f"An exception occurred in the Service's license function: {e}"
@@ -909,7 +914,7 @@ class dl:
                     cek_tree.add(f"[logging.level.error]{msg}")
                     if not pre_existing_tree:
                         table.add_row(cek_tree)
-                    raise Wiautomatarr.Exceptions.CEKNotFound(msg)
+                    raise Widevine.Exceptions.CEKNotFound(msg)
 
                 if cek_tree.children and not pre_existing_tree:
                     table.add_row()

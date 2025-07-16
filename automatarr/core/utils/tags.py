@@ -19,7 +19,7 @@ from automatarr.core.titles.title import Title
 
 STRIP_RE = re.compile(r"[^a-z0-9]+", re.I)
 YEAR_RE = re.compile(r"\s*\(?[12][0-9]{3}\)?$")
-HEADERS = {"User-Agent": "devine-tags/1.0"}
+HEADERS = {"User-Agent": "automatarr-tags/1.0"}
 
 
 log = logging.getLogger("TAGS")
@@ -260,7 +260,7 @@ def tag_file(path: Path, title: Title, tmdb_id: Optional[int] | None = None) -> 
     tvdb_id = ids.get("tvdb_id")
     if tvdb_id:
         tvdb_prefix = "movies" if kind == "movie" else "series"
-        standard_tags["TVDB"] = f"https://thetvdb.com/{tvdb_prefix}/{tvdb_id}"
+        standard_tags["TVDB"] = f"https://thetvdb.com/dereferrer/{tvdb_prefix}/{tvdb_id}"
 
     merged_tags = {
         **custom_tags,

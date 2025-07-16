@@ -6,8 +6,8 @@ from typing import Optional
 import click
 import yaml
 from google.protobuf.json_format import MessageToDict
-from pywiautomatarr.device import Device, DeviceTypes
-from pywiautomatarr.license_protocol_pb2 import FileHashes
+from pywidevine.device import Device, DeviceTypes
+from pywidevine.license_protocol_pb2 import FileHashes
 from rich.prompt import Prompt
 from unidecode import UnidecodeError, unidecode
 

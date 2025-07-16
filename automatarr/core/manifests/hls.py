@@ -20,8 +20,8 @@ from langcodes import Language, tag_is_valid
 from m3u8 import M3U8
 from pyplayready.cdm import Cdm as PlayReadyCdm
 from pyplayready.system.pssh import PSSH as PR_PSSH
-from pywiautomatarr.cdm import Cdm as WidevineCdm
-from pywiautomatarr.pssh import PSSH as WV_PSSH
+from pywidevine.cdm import Cdm as WidevineCdm
+from pywidevine.pssh import PSSH as WV_PSSH
 from requests import Session
 
 from automatarr.core import binaries

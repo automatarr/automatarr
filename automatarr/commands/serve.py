@@ -24,7 +24,7 @@ def serve(host: str, port: int, caddy: bool) -> None:
     \b
     You may serve with Caddy at the same time with --caddy. You can use Caddy
     as a reverse-proxy to serve with HTTPS. The config used will be the Caddyfile
-    next to the devine config.
+    next to the automatarr config.
     """
     from pywidevine import serve
 

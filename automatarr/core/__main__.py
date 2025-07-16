@@ -27,7 +27,7 @@ LOGGING_PATH = None
 @click.option("--log", "log_path", type=Path, default=config.directories.logs / config.filenames.log,
               help="Log path (or filename). Path can contain the following f-string args: {name} {time}.")
 def main(version: bool, debug: bool, log_path: Path) -> None:
-    """Devine—Modular Movie, TV, and Music Archival Software."""
+    """automatarr—Modular Movie, TV, and Music Archival Software."""
     logging.basicConfig(
         level=logging.DEBUG if debug else logging.INFO,
         format="%(message)s",
@@ -59,19 +59,19 @@ def main(version: bool, debug: bool, log_path: Path) -> None:
         Padding(
             Group(
                 Text(
-                    r"   / __ \/ ____/ |  / /  _/ | / / ____/" + "\n"
-                    r"  / / / / __/  | | / // //  |/ / __/   " + "\n"
-                    r" / /_/ / /___  | |/ // // /|  / /___   " + "\n"
-                    r"/_____/_____/  |___/___/_/ |_/_____/   ⠀",
+                    r" ▄▄▄· ▄• ▄▌▄▄▄▄▄      • ▌ ▄ ·.  ▄▄▄·▄▄▄▄▄▄ ▄▄▄· ▄▄▄  ▄▄▄  " + "\n"
+                    r"▐█ ▀█ █▪██▌•██  ▪▄█▀▄ ·██ ▐███▪▐█ ▀█ •██  ▐█ ▀█ ▀▄ █·▀▄ █·" + "\n"
+                    r"▄█▀▀█ █▌▐█▌ ▐█.▪▐█▌.▐▌▐█ ▌▐▌▐█·▄█▀▀█  ▐█.▪▄█▀▀█ ▐▀▀▄ ▐▀▀▄ " + "\n"
+                    r"▐█ ▪▐▌▐█▄█▌ ▐█▌·▐█▌.▐▌██ ██▌▐█▌▐█ ▪▐▌ ▐█▌·▐█ ▪▐▌▐█•█▌▐█•█▌" + "\n"
+                    r" ▀  ▀  ▀▀▀  ▀▀▀  ▀█▄▀▪▀▀  █▪▀▀▀ ▀  ▀  ▀▀▀  ▀  ▀ .▀  ▀.▀  ▀" + "\n",
                     style="ascii.art"
                 ),
-                f"v[repr.number]{__version__}[/] Copyright © 2019-{datetime.now().year} rlaphoenix",
-                "  [bright_blue]https://github.com/devine-dl/devine[/]"
+                f"v[repr.number]{__version__}[/] - {datetime.now().year} - sp4rk.y",
             ),
-            (1, 21, 1, 20),
+            (1, 11, 1, 10),
             expand=True
         ),
-        justify="left"
+        justify="center"
     )
 
     if version:

@@ -6,8 +6,8 @@ from typing import Optional, Union
 
 import httpx
 import m3u8
-from pywiautomatarr.cdm import Cdm as WidevineCdm
-from pywiautomatarr.pssh import PSSH as WV_PSSH
+from pywidevine.cdm import Cdm as WidevineCdm
+from pywidevine.pssh import PSSH as WV_PSSH
 from requests import Session
 
 from automatarr.core.drm import PlayReady, Widevine

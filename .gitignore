@@ -7,6 +7,7 @@ automatarr.yml
 *.dll
 *.crt
 *.wvd
+*.prd
 *.der
 *.pem
 *.bin
@@ -18,13 +19,13 @@ device_client_id_blob
 device_private_key
 device_vmp_blob
 binaries/
-.vscode/
 automatarr/cache/
 automatarr/cookies/
 automatarr/certs/
 automatarr/WVDs/
 automatarr/PRDs/
 temp/
+services/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -215,6 +216,7 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file. However, if you prefer, 
 #  you could uncomment the following to ignore the entire vscode folder
 .vscode/
+.github/copilot-instructions.md
 
 # Ruff stuff:
 .ruff_cache/

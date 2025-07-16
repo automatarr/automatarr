@@ -11,8 +11,8 @@ from uuid import UUID
 import m3u8
 from construct import Container
 from pymp4.parser import Box
-from pywiautomatarr.cdm import Cdm as WidevineCdm
-from pywiautomatarr.pssh import PSSH
+from pywidevine.cdm import Cdm as WidevineCdm
+from pywidevine.pssh import PSSH
 from requests import Session
 from rich.text import Text
 
@@ -47,7 +47,7 @@ class Widevine:
         self._pssh = pssh
 
         if not self.kids:
-            raise Wiautomatarr.Exceptions.KIDNotFound("No Key ID was found within PSSH and none were provided.")
+            raise Widevine.Exceptions.KIDNotFound("No Key ID was found within PSSH and none were provided.")
 
         self.content_keys: dict[UUID, str] = {}
         self.data: dict = kwargs or {}
@@ -106,7 +106,7 @@ class Widevine:
 
         pssh = next(iter(pssh_boxes), None)
         if not pssh:
-            raise Wiautomatarr.Exceptions.PSSHNotFound("PSSH was not found in track data.")
+            raise Widevine.Exceptions.PSSHNotFound("PSSH was not found in track data.")
 
         tenc = next(iter(tenc_boxes), None)
         if not kid and tenc and tenc.key_ID.int != 0:
@@ -150,7 +150,7 @@ class Widevine:
 
         pssh = next(iter(pssh_boxes), None)
         if not pssh:
-            raise Wiautomatarr.Exceptions.PSSHNotFound("PSSH was not found in track data.")
+            raise Widevine.Exceptions.PSSHNotFound("PSSH was not found in track data.")
 
         tenc = next(iter(tenc_boxes), None)
         if not kid and tenc and tenc.key_ID.int != 0:
@@ -204,10 +204,10 @@ class Widevine:
                     for key in cdm.get_keys(session_id, "CONTENT")
                 }
                 if not self.content_keys:
-                    raise Wiautomatarr.Exceptions.EmptyLicense("No Content Keys were within the License")
+                    raise Widevine.Exceptions.EmptyLicense("No Content Keys were within the License")
 
                 if kid not in self.content_keys:
-                    raise Wiautomatarr.Exceptions.CEKNotFound(f"No Content Key for KID {kid.hex} within the License")
+                    raise Widevine.Exceptions.CEKNotFound(f"No Content Key for KID {kid.hex} within the License")
             finally:
                 cdm.close(session_id)
 
@@ -243,10 +243,10 @@ class Widevine:
                     for key in cdm.get_keys(session_id, "CONTENT")
                 }
                 if not self.content_keys:
-                    raise Wiautomatarr.Exceptions.EmptyLicense("No Content Keys were within the License")
+                    raise Widevine.Exceptions.EmptyLicense("No Content Keys were within the License")
 
                 if kid not in self.content_keys:
-                    raise Wiautomatarr.Exceptions.CEKNotFound(f"No Content Key for KID {kid.hex} within the License")
+                    raise Widevine.Exceptions.CEKNotFound(f"No Content Key for KID {kid.hex} within the License")
             finally:
                 cdm.close(session_id)
 

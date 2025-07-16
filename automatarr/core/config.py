@@ -1,7 +1,5 @@
-
 from __future__ import annotations
 
-import os
 from pathlib import Path
 from typing import Any, Optional
 
@@ -12,7 +10,7 @@ from appdirs import AppDirs
 class Config:
     class _Directories:
         # default directories, do not modify here, set via config
-        app_dirs = AppDirs("devine", False)
+        app_dirs = AppDirs("automatarr", False)
         core_dir = Path(__file__).resolve().parent
         namespace_dir = core_dir.parent
         commands = namespace_dir / "commands"
@@ -32,7 +30,7 @@ class Config:
 
     class _Filenames:
         # default filenames, do not modify here, set via config
-        log = "devine_{name}_{time}.log"  # Directories.logs
+        log = "automatarr_{name}_{time}.log"  # Directories.logs
         config = "config.yaml"  # Directories.services / tag
         root_config = "automatarr.yaml"  # Directories.user_configs
         chapters = "Chapters_{title}_{random}.txt"  # Directories.temp
@@ -89,12 +87,12 @@ class Config:
 
 # noinspection PyProtectedMember
 POSSIBLE_CONFIG_PATHS = (
-    # The Devine Namespace Folder (e.g., %appdata%/Python/Python311/site-packages/devine)
+    # The automatarr Namespace Folder (e.g., %appdata%/Python/Python311/site-packages/automatarr)
     Config._Directories.namespace_dir / Config._Filenames.root_config,
-    # The Parent Folder to the Devine Namespace Folder (e.g., %appdata%/Python/Python311/site-packages)
+    # The Parent Folder to the automatarr Namespace Folder (e.g., %appdata%/Python/Python311/site-packages)
     Config._Directories.namespace_dir.parent / Config._Filenames.root_config,
-    # The AppDirs User Config Folder (e.g., %localappdata%/devine)
-    Config._Directories.user_configs / Config._Filenames.root_config
+    # The AppDirs User Config Folder (e.g., %localappdata%/automatarr)
+    Config._Directories.user_configs / Config._Filenames.root_config,
 )
 
 

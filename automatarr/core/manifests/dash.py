@@ -18,8 +18,8 @@ import requests
 from langcodes import Language, tag_is_valid
 from lxml.etree import Element, ElementTree
 from pyplayready.system.pssh import PSSH as PR_PSSH
-from pywiautomatarr.cdm import Cdm as WidevineCdm
-from pywiautomatarr.pssh import PSSH
+from pywidevine.cdm import Cdm as WidevineCdm
+from pywidevine.pssh import PSSH
 from requests import Session
 
 from automatarr.core.constants import DOWNLOAD_CANCELLED, DOWNLOAD_LICENCE_ONLY, AnyTrack
@@ -466,8 +466,8 @@ class DASH:
 
         if not track.drm and isinstance(track, (Video, Audio)):
             try:
-                track.drm = [Wiautomatarr.from_init_data(init_data)]
-            except Wiautomatarr.Exceptions.PSSHNotFound:
+                track.drm = [Widevine.from_init_data(init_data)]
+            except Widevine.Exceptions.PSSHNotFound:
                 # it might not have Widevine DRM, or might not have found the PSSH
                 log.warning("No Widevine PSSH was found for this track, is it DRM free?")
 

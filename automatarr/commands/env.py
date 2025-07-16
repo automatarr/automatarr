@@ -27,17 +27,25 @@ def check() -> None:
     table = Table(title="Dependencies", expand=True)
     table.add_column("Name", no_wrap=True)
     table.add_column("Installed", justify="center")
-    table.add_column("Path", no_wrap=False,  overflow="fold")
+    table.add_column("Path", no_wrap=False, overflow="fold")
 
     # builds shaka-packager based on os, arch
     packager_dep = get_os_arch("packager")
+
+    # Helper function to find binary with multiple possible names
+    def find_binary(*names):
+        for name in names:
+            if shutil.which(name):
+                return name
+        return names[0]  # Return first name as fallback for display
 
     dependencies = [
         {"name": "CCExtractor", "binary": "ccextractor"},
         {"name": "FFMpeg", "binary": "ffmpeg"},
         {"name": "MKVToolNix", "binary": "mkvmerge"},
         {"name": "Shaka-Packager", "binary": packager_dep},
-        {"name": "Aria2(c)", "binary": "aria2c"}
+        {"name": "N_m3u8DL-RE", "binary": find_binary("N_m3u8DL-RE", "n-m3u8dl-re")},
+        {"name": "Aria2(c)", "binary": "aria2c"},
     ]
 
     for dep in dependencies:

@@ -3,7 +3,7 @@ from typing import Any, Optional, Union
 
 import click
 from click.shell_completion import CompletionItem
-from pywiautomatarr.cdm import Cdm as WidevineCdm
+from pywidevine.cdm import Cdm as WidevineCdm
 
 
 class ContextData:
