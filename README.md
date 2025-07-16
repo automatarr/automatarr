@@ -28,7 +28,7 @@ This installs the latest version directly from the GitHub repository:
 
 ```shell
 # Create a new project directory
-mkdir automatarr-test && cd automatarr-test
+mkdir automatarr && cd automatarr
 
 # Initialize UV project
 uv init
@@ -49,16 +49,16 @@ uv run automatarr --help
 
 ```shell
 # Check available commands
-automatarr --help
+uv run automatarr --help
 
 # Configure your settings
-automatarr cfg --help
+uv run automatarr cfg --help
 
 # Confirm setup and all dependencies exist
-automaterr env check
+uv run automaterr env check
 
 # Download content (requires configured services)
-automatarr dl SERVICE_NAME CONTENT_ID
+uv run automatarr dl SERVICE_NAME CONTENT_ID
 ```
 
 ## Documentation
