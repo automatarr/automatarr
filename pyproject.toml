@@ -1,17 +1,21 @@
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.poetry]
+[project]
 name = "automatarr"
-version = "1.0.0"
+version = "1.0.1"
 description = "Modular Movie, TV, and Music Archival Software."
-license = "GPL-3.0-only"
-authors = ["automatarr team"]
+authors = [{ name = "automatarr team" }]
+requires-python = ">=3.10,<3.13"
 readme = "README.md"
-homepage = "https://github.com/automatarr/automatarr"
-repository = "https://github.com/automatarr/automatarr"
-keywords = ["python", "downloader", "drm", "widevine"]
+license = "GPL-3.0-only"
+keywords = [
+    "python",
+    "downloader",
+    "drm",
+    "widevine",
+]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Environment :: Console",
@@ -21,63 +25,72 @@ classifiers = [
     "Topic :: Multimedia :: Video",
     "Topic :: Security :: Cryptography",
 ]
-include = [
-  { path = "CHANGELOG.md", format = "sdist" },
-  { path = "README.md", format = "sdist" },
-  { path = "LICENSE", format = "sdist" },
+dependencies = [
+    "appdirs>=1.4.4,<2",
+    "Brotli>=1.1.0,<2",
+    "click>=8.1.8,<9",
+    "construct>=2.8.8,<3",
+    "crccheck>=1.3.0,<2",
+    "jsonpickle>=3.0.4,<4",
+    "langcodes[data]>=3.4.0,<4",
+    "lxml>=5.2.1,<6",
+    "pproxy>=2.7.9,<3",
+    "protobuf>=4.25.3,<5",
+    "pycaption>=2.2.6,<3",
+    "pycryptodomex>=3.20.0,<4",
+    "pyjwt>=2.8.0,<3",
+    "pymediainfo>=6.1.0,<7",
+    "pymp4>=1.4.0,<2",
+    "pymysql>=1.1.0,<2",
+    "pywidevine[serve]>=1.8.0,<2",
+    "PyYAML>=6.0.1,<7",
+    "requests[socks]>=2.31.0,<3",
+    "rich>=13.7.1,<14",
+    "rlaphoenix.m3u8>=3.4.0,<4",
+    "ruamel.yaml>=0.18.6,<0.19",
+    "sortedcontainers>=2.4.0,<3",
+    "subtitle-filter>=1.4.9,<2",
+    "Unidecode>=1.3.8,<2",
+    "urllib3>=2.2.1,<3",
+    "chardet>=5.2.0,<6",
+    "curl-cffi>=0.7.0b4,<0.8",
+    "pyplayready>=0.6.0,<0.7",
+    "httpx>=0.28.1,<0.29",
+    "cryptography>=45.0.0",
 ]
 
-[tool.poetry.urls]
-"Issues" = "https://github.com/automatarr/automatarr/issues"
-"Discussions" = "https://github.com/automatarr/automatarr/discussions"
-"Changelog" = "https://github.com/automatarr/automatarr/blob/master/CHANGELOG.md"
+[project.urls]
+Homepage = "https://github.com/automatarr/automatarr"
+Repository = "https://github.com/automatarr/automatarr"
+Issues = "https://github.com/automatarr/automatarr/issues"
+Discussions = "https://github.com/automatarr/automatarr/discussions"
+Changelog = "https://github.com/automatarr/automatarr/blob/master/CHANGELOG.md"
 
-[tool.poetry.dependencies]
-python = ">=3.9,<4.0"
-appdirs = "^1.4.4"
-Brotli = "^1.1.0"
-click = "^8.1.7"
-construct = "^2.8.8"
-crccheck = "^1.3.0"
-jsonpickle = "^3.0.4"
-langcodes = { extras = ["data"], version = "^3.4.0" }
-lxml = "^5.2.1"
-pproxy = "^2.7.9"
-protobuf = "^4.25.3"
-pycaption = "^2.2.6"
-pycryptodomex = "^3.20.0"
-pyjwt = "^2.8.0"
-pymediainfo = "^6.1.0"
-pymp4 = "^1.4.0"
-pymysql = "^1.1.0"
-pywidevine = { extras = ["serve"], version = "^1.8.0" }
-PyYAML = "^6.0.1"
-requests = { extras = ["socks"], version = "^2.31.0" }
-rich = "^13.7.1"
-"rlaphoenix.m3u8" = "^3.4.0"
-"ruamel.yaml" = "^0.18.6"
-sortedcontainers = "^2.4.0"
-subtitle-filter = "^1.4.9"
-Unidecode = "^1.3.8"
-urllib3 = "^2.2.1"
-chardet = "^5.2.0"
-curl-cffi = "^0.7.0b4"
-pyplayready = "^0.6.0"
-httpx = "^0.28.1"
-cryptography = "^43.0.3"
-
-[tool.poetry.group.dev.dependencies]
-pre-commit = "^3.7.0"
-mypy = "^1.9.0"
-mypy-protobuf = "^3.6.0"
-types-protobuf = "^4.24.0.20240408"
-types-PyMySQL = "^1.1.0.1"
-types-requests = "^2.31.0.20240406"
-isort = "^5.13.2"
-ruff = "~0.3.7"
-
-[tool.poetry.scripts]
+[project.scripts]
 automatarr = "automatarr.core.__main__:main"
+
+[dependency-groups]
+dev = [
+    "pre-commit>=3.7.0,<4",
+    "mypy>=1.9.0,<2",
+    "mypy-protobuf>=3.6.0,<4",
+    "types-protobuf>=4.24.0.20240408,<5",
+    "types-PyMySQL>=1.1.0.1,<2",
+    "types-requests>=2.31.0.20240406,<3",
+    "isort>=5.13.2,<6",
+    "ruff~=0.3.7",
+    "automatarr",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["automatarr"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "CHANGELOG.md",
+    "README.md",
+    "LICENSE",
+]
 
 [tool.ruff]
 force-exclude = true
@@ -96,3 +109,6 @@ disallow_untyped_defs = true
 follow_imports = "silent"
 ignore_missing_imports = true
 no_implicit_optional = true
+
+[tool.uv.sources]
+automatarr = { workspace = true }

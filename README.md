@@ -10,14 +10,13 @@ Automatarr is a fork of [Devine](https://github.com/devine-dl/devine/), a powerf
 
 ## Key Features
 
-- 🚀 **Easy Installation** - Simple pip installation
+- 🚀 **Easy Installation** - Simple UV or pip installation
 - 🎥 **Multi-Media Support** - Movies, TV episodes, and music
-- 🛠️ **Built-in Parsers** - DASH and HLS manifest support
+- 🛠️ **Built-in Parsers** - DASH/HLS and ISM manifest support
 - 🔒 **DRM Support** - Widevine and PlayReady integration
 - 💾 **Flexible Storage** - Local and remote key vaults
 - 👥 **Multi-Profile Auth** - Support for cookies and credentials
 - 🤖 **Smart Naming** - Automatic P2P-style filename structure
-- 🎬 **TMDB Lookup** - Automatic or Manual lookup for TMDB for muxing
 - ⚙️ **Configurable** - YAML-based configuration
 - ❤️ **Open Source** - Fully open-source with community contributions welcome
 
@@ -25,12 +24,26 @@ Automatarr is a fork of [Devine](https://github.com/devine-dl/devine/), a powerf
 
 ### Installation
 
+This installs the latest version directly from the GitHub repository:
+
 ```shell
-pip install automatarr
+# Create a new project directory
+mkdir automatarr-test && cd automatarr-test
+
+# Initialize UV project
+uv init
+
+# Install from GitHub
+uv add git+https://github.com/automatarr/automatarr.git
+
+# Run automatarr
+uv run automatarr --help
 ```
 
 > [!NOTE]
 > After installation, you may need to add the installation path to your PATH environment variable if prompted.
+>
+> **Recommended:** Use `uv run automatarr` instead of direct command execution to ensure proper virtual environment activation.
 
 ### Basic Usage
 
@@ -86,9 +99,9 @@ own Services and only use automatarr with Services you have the legal right to d
 > automatarr repository as they both use the [Unlicense license] therefore direct reading and porting of their code would be
 > legal.
 
-  [youtube-dl]: <https://github.com/ytdl-org/youtube-dl>
-  [yt-dlp]: <https://github.com/yt-dlp/yt-dlp>
-  [Unlicense license]: <https://choosealicense.com/licenses/unlicense>
+[youtube-dl]: https://github.com/ytdl-org/youtube-dl
+[yt-dlp]: https://github.com/yt-dlp/yt-dlp
+[Unlicense license]: https://choosealicense.com/licenses/unlicense
 
 ### Service Tags
 
@@ -189,6 +202,7 @@ folder without a `.txt` or `default.txt`, but with another file, then no Cookies
 > - You can use both Cookies and Credentials at the same time, so long as your Service takes and uses both.
 > - If you are using profiles, then make sure you use the same name on the Credential name and Cookie file name when
 >   using `-p/--profile`.
+
 > [!WARNING]
 > Profile names are case-sensitive and unique per-service. They have no arbitrary character or length limit, but for
 > convenience sake we don't recommend using any special characters as your terminal may get confused.
@@ -201,8 +215,8 @@ Recommended Cookie exporter extensions:
 - Firefox: "[Export Cookies]" by `Rotem Dan`
 - Chromium: "[Open Cookies.txt]" by `Ninh Pham`
 
-  [Export Cookies]: <https://addons.mozilla.org/addon/export-cookies-txt>
-  [Open Cookies.txt]: <https://chrome.google.com/webstore/detail/gdocmgbfkjnnpapoeobnolbbkoibbcif>
+  [Export Cookies]: https://addons.mozilla.org/addon/export-cookies-txt
+  [Open Cookies.txt]: https://chrome.google.com/webstore/detail/gdocmgbfkjnnpapoeobnolbbkoibbcif
 
 Any other extension that exports to the standard Netscape format should theoretically work.
 
@@ -244,4 +258,4 @@ Please refrain from spam or asking for questions that infringe upon a Service's 
 This software is licensed under the terms of [GNU General Public License, Version 3.0](LICENSE).  
 You can find a copy of the license in the LICENSE file in the root folder.
 
-* * *
+---
