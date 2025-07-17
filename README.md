@@ -99,10 +99,6 @@ own Services and only use automatarr with Services you have the legal right to d
 > automatarr repository as they both use the [Unlicense license] therefore direct reading and porting of their code would be
 > legal.
 
-[youtube-dl]: https://github.com/ytdl-org/youtube-dl
-[yt-dlp]: https://github.com/yt-dlp/yt-dlp
-[Unlicense license]: https://choosealicense.com/licenses/unlicense
-
 ### Service Tags
 
 Service tags generally follow these rules:
@@ -196,16 +192,13 @@ choose which one to use. E.g., `/Cookies/NF/sam.txt` and then use it with `--pro
 folder without a `.txt` or `default.txt`, but with another file, then no Cookies will be loaded unless you use
 `-p/--profile` like shown. This allows you to opt in to authentication at whim.
 
-> [!TIP]
->
 > - If your Service does not require Authentication, then do not define any Credential or Cookie for that Service.
 > - You can use both Cookies and Credentials at the same time, so long as your Service takes and uses both.
 > - If you are using profiles, then make sure you use the same name on the Credential name and Cookie file name when
 >   using `-p/--profile`.
-
-> [!WARNING]
-> Profile names are case-sensitive and unique per-service. They have no arbitrary character or length limit, but for
-> convenience sake we don't recommend using any special characters as your terminal may get confused.
+>   [!WARNING]
+>   Profile names are case-sensitive and unique per-service. They have no arbitrary character or length limit, but for
+>   convenience sake we don't recommend using any special characters as your terminal may get confused.
 
 ### Cookie file format and Extensions
 
@@ -215,14 +208,11 @@ Recommended Cookie exporter extensions:
 - Firefox: "[Export Cookies]" by `Rotem Dan`
 - Chromium: "[Open Cookies.txt]" by `Ninh Pham`
 
-  [Export Cookies]: https://addons.mozilla.org/addon/export-cookies-txt
-  [Open Cookies.txt]: https://chrome.google.com/webstore/detail/gdocmgbfkjnnpapoeobnolbbkoibbcif
-
 Any other extension that exports to the standard Netscape format should theoretically work.
 
-## widevine Provisions
+## Widevine Provisions
 
-A widevine Provision is needed for acquiring licenses containing decryption keys for DRM-protected content.
+A Widevine Provision is needed for acquiring licenses containing decryption keys for DRM-protected content.
 They are not needed if you will be using automatarr on DRM-free services. Please do not ask for any widevine Device Files,
 Keys, or Provisions as they cannot be provided.
 
@@ -230,14 +220,32 @@ automatarr only supports `.WVD` files (widevine Device Files). However, if you h
 Device Client Identification Blob as blob files (e.g., `device_private_key` and `device_client_id_blob`), then you can
 convert them to a `.WVD` file by running `pywidevine create-device --help`.
 
-Once you have `.WVD` files, place them in the WVDs directory which can be found by calling `automatarr env info`.
-You can then set in your config which WVD (by filename only) to use by default with `automatarr cfg cdm.default wvd_name`.
+Once you have `.WVD` files, place them in the WVDs directory which can be found by calling `uv run automatarr env info`.
+You can then set in your config which WVD (by filename only) to use by default with `uv run automatarr cfg cdm.default wvd_name`.
 From here you can then set which WVD to use for each specific service. It's best to use the lowest security-level
 provision where possible.
 
 An alternative would be using a pywidevine Serve-compliant CDM API. Of course, you would need to know someone who is
 serving one, and they would need to give you access. Take a look at the [remote_cdm](CONFIG.md#remotecdm-listdict)
 config option for setup information. For further information on it see the pywidevine repository.
+
+## PlayReady Device (PRD) Provisions
+
+Similarly, a PlayReady Device file (.PRD) is needed for acquiring licenses and decryption keys for PlayReady DRM-protected content.
+PRD files are not required for DRM-free services. Automatarr only supports `.PRD` files (PlayReady Device Files).
+
+To create or manage PRD files, use the built-in CLI commands:
+
+- `uv run automatarr prd new` — Create a new PRD file from device keys and certificates
+- `uv run automatarr prd reprovision` — Reprovision an existing PRD file with new keys
+- `uv run automatarr prd test` — Test a PRD file against the Microsoft PlayReady demo server
+
+Once you have `.PRD` files, place them in the `PRDs/` directory (see `uv run automatarr env info` for the path).
+You can set the default PRD file in your config with `uv run automatarr cfg cdm.default prd_name`.
+Service-specific PRD files can also be set in the config, just like Widevine.
+For best compatibility, use the lowest security-level PRD file available.
+
+Do not ask for PRD device files, keys, or provisions as they cannot be provided. Only use PRD files for services you have the legal right to access.
 
 ## End User License Agreement
 
@@ -259,3 +267,9 @@ This software is licensed under the terms of [GNU General Public License, Versio
 You can find a copy of the license in the LICENSE file in the root folder.
 
 ---
+
+[Export Cookies]: https://addons.mozilla.org/addon/export-cookies-txt
+[Open Cookies.txt]: https://chrome.google.com/webstore/detail/gdocmgbfkjnnpapoeobnolbbkoibbcif
+[Unlicense license]: https://choosealicense.com/licenses/unlicense
+[youtube-dl]: https://github.com/ytdl-org/youtube-dl
+[yt-dlp]: https://github.com/yt-dlp/yt-dlp
