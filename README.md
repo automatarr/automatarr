@@ -27,17 +27,18 @@ Automatarr is a fork of [Devine](https://github.com/devine-dl/devine/), a powerf
 This installs the latest version directly from the GitHub repository:
 
 ```shell
-# Create a new project directory
-mkdir automatarr && cd automatarr
-
-# Initialize UV project
-uv init
-
-# Install from GitHub
-uv add git+https://github.com/automatarr/automatarr.git
-
-# Run automatarr
+git clone https://github.com/automatarr/automatarr.git
+cd automatarr
+uv sync
 uv run automatarr --help
+```
+
+### Install Automatarr as a global (per-user) tool
+
+```bash
+uv tool install git+https://github.com/automatarr/automatarr.git
+# Then run:
+uvx automatarr --help   # or just `automatarr` once PATH updated
 ```
 
 > [!NOTE]
@@ -59,6 +60,11 @@ uv run automaterr env check
 
 # Download content (requires configured services)
 uv run automatarr dl SERVICE_NAME CONTENT_ID
+
+# If installed globally with uvx:
+uvx automatarr --help
+uvx automatarr cfg --help
+uvx automatarr dl SERVICE_NAME CONTENT_ID
 ```
 
 ## Documentation
