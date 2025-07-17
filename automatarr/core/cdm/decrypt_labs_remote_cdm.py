@@ -1,12 +1,11 @@
 import base64
 import secrets
-from typing import Optional, Union, Type
+from typing import Optional, Type, Union
 from uuid import UUID
 
 import requests
-from pywidevine import RemoteCdm, Key, PSSH, Device, DeviceTypes
-from pywidevine.license_protocol_pb2 import SignedMessage, SignedDrmCertificate
-
+from pywidevine import PSSH, Device, DeviceTypes, Key, RemoteCdm
+from pywidevine.license_protocol_pb2 import SignedDrmCertificate, SignedMessage
 
 # Copyright 2024 by DevYukine.
 
@@ -21,7 +20,7 @@ class DecryptLabsRemoteCDM(RemoteCdm):
         self.keys = {}
         try:
             super().__init__(device_type, system_id, security_level, host, secret, device_name)
-        except Exception as e:
+        except Exception:
             pass
         self.req_session = requests.Session()
         self.req_session.headers.update({"decrypt-labs-api-key": secret})

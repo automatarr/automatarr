@@ -4,9 +4,10 @@ import mimetypes
 import os
 from pathlib import Path
 from typing import Optional, Union
-from zlib import crc32
-import requests
 from urllib.parse import urlparse
+from zlib import crc32
+
+import requests
 
 from automatarr.core.config import config
 

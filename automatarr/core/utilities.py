@@ -127,7 +127,7 @@ def get_boxes(data: bytes, box_type: bytes, as_bytes: bool = False) -> Box:
     - Remaining bytes: box data
 
     The function uses slicing to directly locate the requested box type in the data
-    rather than recursively traversing the box hierarchy. This is efficient when 
+    rather than recursively traversing the box hierarchy. This is efficient when
     looking for specific box types regardless of their position in the hierarchy.
 
     Parameters:
@@ -139,7 +139,7 @@ def get_boxes(data: bytes, box_type: bytes, as_bytes: bool = False) -> Box:
         Box objects of the requested type found in the data
 
     Notes:
-        - For each box found, the function updates the search offset to skip past 
+        - For each box found, the function updates the search offset to skip past
           the current box to avoid finding the same box multiple times
         - The function handles validation errors for certain box types (e.g., tenc)
         - The size field is located 4 bytes before the box type identifier

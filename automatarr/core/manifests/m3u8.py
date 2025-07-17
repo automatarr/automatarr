@@ -6,6 +6,8 @@ from typing import Optional, Union
 
 import httpx
 import m3u8
+from pyplayready.cdm import Cdm as PlayReadyCdm
+from pyplayready.system.pssh import PSSH as PR_PSSH
 from pywidevine.cdm import Cdm as WidevineCdm
 from pywidevine.pssh import PSSH as WV_PSSH
 from requests import Session
@@ -13,8 +15,6 @@ from requests import Session
 from automatarr.core.drm import PlayReady, Widevine
 from automatarr.core.manifests.hls import HLS
 from automatarr.core.tracks import Tracks
-from pyplayready.cdm import Cdm as PlayReadyCdm
-from pyplayready.system.pssh import PSSH as PR_PSSH
 
 
 def parse(

@@ -70,9 +70,9 @@ def decode(encoded, charset=CHARSET_DEFAULT):
     """
     _check_type(encoded, str)
 
-    l, i, v = len(encoded), 0, 0
+    length, i, v = len(encoded), 0, 0
     for x in encoded:
-        v += _value(x, charset=charset) * (BASE ** (l - (i + 1)))
+        v += _value(x, charset=charset) * (BASE ** (length - (i + 1)))
         i += 1
 
     return v

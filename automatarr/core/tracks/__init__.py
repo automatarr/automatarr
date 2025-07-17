@@ -1,5 +1,5 @@
-from .audio import Audio
 from .attachment import Attachment
+from .audio import Audio
 from .chapter import Chapter
 from .chapters import Chapters
 from .subtitle import Subtitle

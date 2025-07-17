@@ -5,15 +5,15 @@ from typing import Optional
 import click
 import requests
 from Crypto.Random import get_random_bytes
-
-from automatarr.core.config import config
-from automatarr.core.constants import context_settings
 from pyplayready.cdm import Cdm
 from pyplayready.crypto.ecc_key import ECCKey
 from pyplayready.device import Device
 from pyplayready.exceptions import InvalidCertificateChain, OutdatedDevice
 from pyplayready.system.bcert import Certificate, CertificateChain
 from pyplayready.system.pssh import PSSH
+
+from automatarr.core.config import config
+from automatarr.core.constants import context_settings
 
 
 @click.group(
